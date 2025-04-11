@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API de Videojuegos</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>API de Videojuegos</h1>
+        <p>Una API RESTful para gestionar videojuegos y desarrolladoras</p>
+    </header>
+    
+    <main>
+        <section class="api-info">
+            <h2>Información de la API</h2>
+            <p>Esta API permite gestionar videojuegos y desarrolladoras. Puedes crear, leer, actualizar y eliminar videojuegos y desarrolladoras, así como filtrar por diferentes criterios.</p>
+        </section>
+        
+        <section class="endpoints">
+            <h2>Endpoints Disponibles</h2>
+            
+            <div class="endpoint-group">
+                <h3>Usuarios</h3>
+                <ul>
+                    <li><strong>POST /api/usuarios/registro</strong> - Registrar un nuevo usuario</li>
+                    <li><strong>POST /api/usuarios/login</strong> - Iniciar sesión</li>
+                    <li><strong>GET /api/usuarios/perfil</strong> - Obtener perfil de usuario (requiere autenticación)</li>
+                </ul>
+            </div>
+            
+            <div class="endpoint-group">
+                <h3>Videojuegos</h3>
+                <ul>
+                    <li><strong>GET /api/videojuegos</strong> - Obtener todos los videojuegos</li>
+                    <li><strong>GET /api/videojuegos?genero=Acción</strong> - Filtrar videojuegos por género</li>
+                    <li><strong>GET /api/videojuegos?plataforma=PC</strong> - Filtrar videojuegos por plataforma</li>
+                    <li><strong>GET /api/videojuegos?titulo=Zelda</strong> - Buscar videojuegos por título</li>
+                    <li><strong>GET /api/videojuegos/:id</strong> - Obtener un videojuego por ID</li>
+                    <li><strong>POST /api/videojuegos</strong> - Crear un nuevo videojuego (requiere autenticación)</li>
+                    <li><strong>PUT /api/videojuegos/:id</strong> - Actualizar un videojuego (requiere autenticación)</li>
+                    <li><strong>DELETE /api/videojuegos/:id</strong> - Eliminar un videojuego (requiere autenticación)</li>
+                </ul>
+            </div>
+            
+            <div class="endpoint-group">
+                <h3>Desarrolladoras</h3>
+                <ul>
+                    <li><strong>GET /api/desarrolladoras</strong> - Obtener todas las desarrolladoras</li>
+                    <li><strong>GET /api/desarrolladoras?pais=Japón</strong> - Filtrar desarrolladoras por país</li>
+                    <li><strong>GET /api/desarrolladoras?nombre=Nintendo</strong> - Buscar desarrolladoras por nombre</li>
+                    <li><strong>GET /api/desarrolladoras/:id</strong> - Obtener una desarrolladora por ID</li>
+                    <li><strong>POST /api/desarrolladoras</strong> - Crear una nueva desarrolladora (requiere autenticación)</li>
+                    <li><strong>PUT /api/desarrolladoras/:id</strong> - Actualizar una desarrolladora (requiere autenticación)</li>
+                    <li><strong>DELETE /api/desarrolladoras/:id</strong> - Eliminar una desarrolladora (requiere autenticación)</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section class="ejemplos">
+            <h2>Ejemplos de Uso</h2>
+            
+            <div class="ejemplo">
+                <h3>Registrar un usuario</h3>
+                <pre><code>
+                    POST /api/usuarios/registro
+                    Content-Type: application/json
+
+                    {
+                    "nombre": "Usuario Ejemplo",
+                    "email": "usuario@ejemplo.com",
+                    "password": "contraseña123"
+                    }
+                </code></pre>
+            </div>
+            
+            <div class="ejemplo">
+                <h3>Crear un videojuego</h3>
+                <pre><code>
+POST /api/videojuegos
+Content-Type: application/json
+Authorization: Bearer [tu_token_jwt]
+
+{
+  "titulo": "The Legend of Zelda: Breath of the Wild",
+  "descripcion": "Un juego de aventuras de mundo abierto...",
+  "genero": "Aventura",
+  "plataformas": ["Nintendo Switch", "Wii U"],
+  "fechaLanzamiento": "2017-03-03",
+  "desarrolladora": "60a1b2c3d4e5f6g7h8i9j0k",
+  "clasificacionEdad": "E10+",
+  "precio": 59.99,
+  "puntuacion": 9.5
+}
+                </code></pre>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <p><strong>Nombre y Apellido:</strong> [Tu Nombre y Apellido]</p>
+        <p><strong>Nombre de la materia:</strong> [Nombre de la Materia]</p>
+        <p><strong>Nombre del docente:</strong> [Nombre del Docente]</p>
+        <p><strong>Comisión:</strong> [Número de Comisión]</p>
+    </footer>
+</body>
+</html>
