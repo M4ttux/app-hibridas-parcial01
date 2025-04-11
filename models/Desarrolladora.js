@@ -11,13 +11,14 @@ const desarrolladoraSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    fechaFundacion: {
-        type: Date,
-        default: Date.now
+    fundacion: {
+        type: Number,
+        required: true
     },
-    logo: {
-        type: String,
-        default: 'https://via.placeholder.com/150x150?text=Desarrolladora'
+    autor: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Usuario',
+        required: true
     }
 });
 

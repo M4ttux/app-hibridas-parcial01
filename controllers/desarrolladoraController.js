@@ -6,6 +6,7 @@ export const getDesarrolladoras = async (req, res) => {
         const desarrolladoras = await Desarrolladora.find();
         res.json(desarrolladoras);
     } catch (error) {
+        console.error('Error al obtener las desarrolladoras:', error);
         res.status(500).json({ msg: error.message });
     }
 };
@@ -19,6 +20,7 @@ export const getDesarrolladoraById = async (req, res) => {
         }
         res.json(desarrolladora);
     } catch (error) {
+        console.error('Error al obtener la desarrolladora:', error);
         res.status(500).json({ msg: error.message });
     }
 };
@@ -26,14 +28,19 @@ export const getDesarrolladoraById = async (req, res) => {
 //crear desarrolladora
 export const createDesarrolladora = async (req, res) => {
     try {
-        const desarrolladoraExistente = await Desarrolladora.findOne({ nombre: req.body.nombre });
-        if (desarrolladoraExistente) {
-            return res.status(400).json({ msg: "Ya existe una desarrolladora con ese nombre" });
+        if (!req.usuario) {
+            return res.status(401).json({ msg: "Usuario no autorizado" });
         }
-        const desarrolladora = new Desarrolladora(req.body);
+
+        const desarrolladora = new Desarrolladora({
+            ...req.body, autor: req.usuario._id
+        });
+
         await desarrolladora.save();
+
         res.status(201).json({mensaje: 'Desarrolladora creada', desarrolladora});
     } catch (error) {
+        console.error('Error al crear la desarrolladora:', error);
         res.status(500).json({ mensaje: 'Error al crear la desarrolladora', error: error.message });
     }
 };
@@ -42,18 +49,27 @@ export const createDesarrolladora = async (req, res) => {
 export const updateDesarrolladora = async (req, res) => {
     try {
         const desarrolladora = await Desarrolladora.findById(req.params.id);
+
         if (!desarrolladora) {
             return res.status(404).json({ msg: "Desarrolladora no encontrada" });
         }
-        if (desarrolladora.autor.toString() !== req.usuario._id.toString()) {
-            return res.status(401).json({ msg: "No autorizado" });
+
+        if (!req.usuario) {
+            return res.status(401).json({ msg: "Usuario no autorizado" });
         }
+
+        if (desarrolladora.autor.toString() !== req.usuario._id.toString()) {
+            return res.status(401).json({ msg: "No tienes permiso para actualizar esta desarrolladora" });
+        }
+        
         const updatedDesarrolladora = await Desarrolladora.findByIdAndUpdate(req.params.id, req.body, { new: true });
+
         res.json({
             mensaje: 'Desarrolladora actualizada',
             desarrolladora: updatedDesarrolladora
         });
     } catch (error) {
+        console.error('Error al actualizar la desarrolladora:', error);
         res.status(500).json({ mensaje: 'Error al actualizar la desarrolladora', error: error.message });
     }
 };
@@ -62,15 +78,24 @@ export const updateDesarrolladora = async (req, res) => {
 export const deleteDesarrolladora = async (req, res) => {
     try {
         const desarrolladora = await Desarrolladora.findById(req.params.id);
+
         if (!desarrolladora) {
             return res.status(404).json({ msg: "Desarrolladora no encontrada" });
         }
-        if (desarrolladora.autor.toString() !== req.usuario._id.toString()) {
+
+        if (!req.usuario) {
             return res.status(401).json({ msg: "No autorizado" });
         }
-        await desarrolladora.findByIdAndDelete(req.params.id);
+
+        if (desarrolladora.autor.toString() !== req.usuario._id.toString()) {
+            return res.status(401).json({ msg: "No tienes permiso para eliminar esta desarrolladora" });
+        }
+
+        await Desarrolladora.findByIdAndDelete(req.params.id);
+        
         res.json({ mensaje: 'Desarrolladora eliminada' });
     } catch (error) {
+        console.error('Error al eliminar desarrolladora:', error);
         res.status(500).json({ msg: error.message });
     }
 };

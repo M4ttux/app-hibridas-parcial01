@@ -29,13 +29,8 @@ const videojuegoSchema = new mongoose.Schema({
         ref: 'Desarrolladora',
         required: true
     },
-    imagen: {
-        type: String,
-        default: 'https://via.placeholder.com/300x400?text=Videojuego'
-    },
-    autor: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Usuario',
+    precio: {
+        type: Number,
         required: true
     }
 });

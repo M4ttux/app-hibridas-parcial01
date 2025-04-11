@@ -6,6 +6,7 @@ export const getVideojuegos = async (req, res) => {
         const videojuegos = await Videojuego.find();
         res.json(videojuegos);
     } catch (error) {
+        console.error('Error al obtener los videojuegos:', error);
         res.status(500).json({ msg: error.message });
     }
 };
@@ -19,6 +20,7 @@ export const getVideojuegoById = async (req, res) => {
         }
         res.json(videojuego);
     } catch (error) {
+        console.error('Error al obtener el videojuego:', error);
         res.status(500).json({ msg: error.message });
     }
 };
@@ -30,6 +32,7 @@ export const createVideojuego = async (req, res) => {
         await videojuego.save();
         res.status(201).json({mensaje: 'Videojuego creado', videojuego});
     } catch (error) {
+        console.error('Error al crear el videojuego:', error);
         res.status(500).json({ mensaje: 'Error al crear el videojuego', error: error.message });
     }
 };
@@ -49,6 +52,7 @@ export const updateVideojuego = async (req, res) => {
         const updatedVideojuego = await Videojuego.findByIdAndUpdate(req.params.id, req.body, { new: true });
         res.json({ mensaje: 'Videojuego actualizado', videojuego: updatedVideojuego });
     } catch (error) {
+        console.error('Error al actualizar el videojuego:', error);
         res.status(500).json({ msg: error.message });
     }
 };
@@ -67,6 +71,7 @@ export const deleteVideojuego = async (req, res) => {
         await videojuego.findByIdAndDelete(req.params.id);
         res.json({ mensaje: 'Videojuego eliminado' });
     } catch (error) {
+        console.error('Error al eliminar el videojuego:', error);
         res.status(500).json({ msg: error.message });
     }
 };
