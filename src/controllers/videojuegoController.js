@@ -4,10 +4,34 @@ import { normalizeString } from "../utils/stringUtils.js";
 //obtener todos los videojuegos
 export const getVideojuegos = async (req, res) => {
     try {
+        const { titulo, genero, plataforma } = req.query;
+
         const videojuegos = await Videojuego.find()
         .populate('desarrolladora', 'nombre')
         .populate('autor', 'nombre');
-        res.json(videojuegos);
+
+        let filtrados = videojuegos;
+
+        if (titulo) {
+            filtrados = filtrados.filter(v => normalizeString(v.titulo).includes(normalizeString(titulo)));
+        }
+
+        if (genero) {
+            filtrados = filtrados.filter(v =>
+                v.genero.some(g => normalizeString(g).includes(normalizeString(genero)))
+            );
+        }
+
+        if (plataforma) {
+            filtrados = filtrados.filter(v =>
+                v.plataformas.some(p => normalizeString(p).includes(normalizeString(plataforma)))
+            );
+        }
+
+        if (!filtrados.length) {
+            return res.status(404).json({ msg: "Videojuegos no encontrados" });
+        }
+        res.json(filtrados);
     } catch (error) {
         console.error('Error al obtener los videojuegos:', error);
         res.status(500).json({ msg: error.message });
@@ -99,24 +123,3 @@ export const deleteVideojuego = async (req, res) => {
         res.status(500).json({ msg: error.message });
     }
 };
-
-//obtener videojuego por titulo
-export const getVideojuegoByTitulo = async (req, res) => {
-    try {
-        const { titulo } = req.params;
-
-        const todas = await Videojuego.find()
-        .populate('desarrolladora', 'nombre')
-        .populate('autor', 'nombre');
-        const videojuego = todas.find(v => normalizeString(v.titulo) === normalizeString(titulo));
-
-        if (!videojuego) {
-            return res.status(404).json({ msg: "Videojuego no encontrado" });
-        }
-        res.json(videojuego);
-
-    } catch (error) {
-        console.error('Error al obtener el videojuego:', error);
-        res.status(500).json({ msg: error.message });
-    }
-}

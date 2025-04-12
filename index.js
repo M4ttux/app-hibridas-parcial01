@@ -6,9 +6,9 @@ import { fileURLToPath } from "url";
 import dotenv from "dotenv";
 
 // Rutas
-import videojuegosRoutes from "./routes/videojuegos.js";
-import desarrolladorasRoutes from "./routes/desarrolladoras.js";
-import usuariosRoutes from "./routes/usuarios.js";
+import videojuegosRoutes from "./src/routes/videojuegos.js";
+import desarrolladorasRoutes from "./src/routes/desarrolladoras.js";
+import usuariosRoutes from "./src/routes/usuarios.js";
 
 // Configuracion para __dirname en ES modules
 const __filename = fileURLToPath(import.meta.url);

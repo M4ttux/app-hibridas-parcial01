@@ -4,9 +4,25 @@ import { normalizeString } from "../utils/stringUtils.js";
 //obtener todas las desarrolladoras
 export const getDesarrolladoras = async (req, res) => {
     try {
+        const { nombre , pais } = req.query;
+
         const desarrolladoras = await Desarrolladora.find()
         .populate('autor', 'nombre');
-        res.json(desarrolladoras);
+
+        let filtradas = desarrolladoras;
+
+        if (nombre) {
+            filtradas = filtradas.filter(d => normalizeString(d.nombre).includes(normalizeString(nombre)));
+        }
+
+        if (pais) {
+            filtradas = filtradas.filter(d => normalizeString(d.pais).includes(normalizeString(pais)));
+        }
+
+        if (!filtradas.length) {
+            return res.status(404).json({ msg: "Desarrolladoras no encontradas" });
+        }
+        res.json(filtradas);
     } catch (error) {
         console.error('Error al obtener las desarrolladoras:', error);
         res.status(500).json({ msg: error.message });
@@ -102,44 +118,3 @@ export const deleteDesarrolladora = async (req, res) => {
         res.status(500).json({ msg: error.message });
     }
 };
-
-// Obtener desarroladora por nombre
-export const getDesarrolladoraByNombre = async (req, res) => {
-    try {
-        const { nombre } = req.params;
-
-        const todas = await Desarrolladora.find()
-        .populate('autor', 'nombre');
-        const desarrolladora = todas.find(d => normalizeString(d.nombre) === normalizeString(nombre));
-
-        if (!desarrolladora) {
-            return res.status(404).json({ msg: "Desarrolladora no encontrada" });
-        }
-        res.json(desarrolladora);
-    } catch (error) {
-        console.error('Error al obtener la desarrolladora por nombre:', error);
-        res.status(500).json({ msg: error.message });
-    }
-};
-
-// Obtener desarrolladoras por pais
-export const getDesarrolladorasByPais = async (req, res) => {
-    try {
-        const { pais } = req.params;
-
-        const todas = await Desarrolladora.find()
-        .populate('autor', 'nombre');
-
-        const desarrolladoras = todas.filter(d => normalizeString(d.pais) === normalizeString(pais));
-
-        if (!desarrolladoras) {
-            return res.status(404).json({ msg: "Desarrolladoras no encontradas" });
-        }
-        res.json(desarrolladoras);
-    } catch (error) {
-        console.error('Error al obtener las desarrolladoras por pais:', error);
-        res.status(500).json({ msg: error.message });
-    }
-};
-
-
