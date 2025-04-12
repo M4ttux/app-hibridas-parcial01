@@ -8,8 +8,19 @@ const generarToken = (id) => {
     });
 };
 
+// Obtener todos los usuarios
+export const getUsuarios = async (req, res) => {
+    try {
+        const usuarios = await Usuario.find();
+        res.json(usuarios);
+    } catch (error) {
+        console.error('Error al obtener los usuarios:', error);
+        res.status(500).json({ msg: error.message });
+    }
+};
+
 //Registrar usuario
-export const registrar = async (req, res) => {
+export const registrarUsuario = async (req, res) => {
     try {
         const { nombre, email, password } = req.body;
 
@@ -37,7 +48,8 @@ export const registrar = async (req, res) => {
         });
 
     } catch (error) {
-        res.status(500).json({ msg: 'Error al registrar usuario', error: error.message });
+        console.error('Error al registrar el usuario:', error);
+        res.status(500).json({ msg: error.message });
     }
 };
 
@@ -71,7 +83,8 @@ export const login = async (req, res) => {
         });
 
     } catch (error) {
-        res.status(500).json({ msg: 'Error al iniciar sesión', error: error.message });
+        console.error('Error al iniciar sesión:', error);
+        res.status(500).json({ msg: error.message });
     }
 };
     
@@ -81,6 +94,7 @@ export const obtenerPerfil = async (req, res) => {
         const usuario = await Usuario.findById(req.usuario._id).select('-password');
         res.json(usuario);
     } catch (error) {
-        res.status(500).json({ msg: 'Error al obtener el perfil', error: error.message });
+        console.error('Error al obtener el perfil del usuario:', error);
+        res.status(500).json({ msg: error.message });
     }
 };

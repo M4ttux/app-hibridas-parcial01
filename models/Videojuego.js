@@ -7,21 +7,22 @@ const videojuegoSchema = new mongoose.Schema({
         trim: true
     },
     descripcion: {
-        type: String,
-        required: true
+        type: String
     },
     genero: {
-        type: String,
-        enum: ['Acción', 'Aventura', 'Carreras', 'Deportes', 'Estrategia', 'Juegos de rol', 'Simulación', 'Terror', 'Otros'],
-        required: true
+        type: [String],
+        enum: ['Acción', 'Aventura', 'Carreras', 'Deportes', 'Estrategia', 'Juegos de rol', 'Simulación', 'Terror', 'Otros']
     },
     plataformas: {
-        type: String,
-        enum: ['PC', 'PS5' , 'PS4', 'Xbox Series X', 'Xbox Series S', 'Xbox One', 'Nintendo Switch', 'Mobile', 'Otros'],
-        required: true
+        type: [String],
+        enum: ['PC', 'PS5' , 'PS4', 'PS3', 'Xbox Series X', 'Xbox Series S', 'Xbox One', 'Xbox 360', 'Nintendo Switch', 'Mobile', 'Otros']
     },
     fechaLanzamiento: {
-        type: Date,
+        type: Number,
+        required: true
+    },
+    precio: {
+        type: Number,
         required: true
     },
     desarrolladora: {
@@ -29,8 +30,9 @@ const videojuegoSchema = new mongoose.Schema({
         ref: 'Desarrolladora',
         required: true
     },
-    precio: {
-        type: Number,
+    autor: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Usuario',
         required: true
     }
 });

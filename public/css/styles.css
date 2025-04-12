@@ -89,6 +89,14 @@ footer {
     font-size: 0.85em;
 }
 
+.text-get {
+    color: #40d830 !important;
+}
+
+.text-post {
+    color: #BBFF00 !important;
+}
+
 @media (max-width: 768px) {
     body {
         padding: 10px;

@@ -5,7 +5,6 @@ import path from "path";
 import { fileURLToPath } from "url";
 import dotenv from "dotenv";
 
-
 // Rutas
 import videojuegosRoutes from "./routes/videojuegos.js";
 import desarrolladorasRoutes from "./routes/desarrolladoras.js";
@@ -26,10 +25,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
-// Configurar motor de vistas
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "ejs");
-
 app.use(express.static("public"));
 
 app.use('/api/videojuegos', videojuegosRoutes);
@@ -44,10 +39,9 @@ try {
   console.error('Error al conectar a MongoDB:', error);
 } 
 
-
 // ruta principal
 app.get("/", (req, res) => {
-  res.render('index');
+  res.redirect('/public/index.html');
 });
 
 // iniciar servidor

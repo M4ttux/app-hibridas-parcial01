@@ -22,3 +22,16 @@ GET /api/desarrolladoras/:id Funciona
 PUT /api/desarrolladoras/:id Funciona
 
 DELETE /api/desarrolladoras/:id Funciona
+
+// Videojuegos
+
+POST /api/videojuegos Funciona
+
+PUT /api/videojuegos/:id Funciona
+
+DELETE /api/videojuegos/:id Funciona
+
+GET  /api/videojuegos Funciona
+
+GET /api/videojuegos/:id Funciona
+
