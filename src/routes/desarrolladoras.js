@@ -1,11 +1,5 @@
 import express from "express";
-import { 
-    getDesarrolladoras,
-    getDesarrolladoraById,
-    createDesarrolladora,
-    updateDesarrolladora,
-    deleteDesarrolladora
-} from "../controllers/desarrolladoraController.js";
+import { getDesarrolladoras, getDesarrolladoraById, createDesarrolladora, updateDesarrolladora, deleteDesarrolladora } from "../controllers/desarrolladoraController.js";
 import auth from "../middlewares/auth.js";
 
 const router = express.Router();
