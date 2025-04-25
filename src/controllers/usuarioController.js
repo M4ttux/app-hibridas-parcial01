@@ -1,6 +1,7 @@
 import Usuario from "../models/Usuario.js";
 import jwt from "jsonwebtoken";
 
+
 //Generar token JWT
 const generarToken = (id) => {
     return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -97,5 +98,3 @@ export const obtenerPerfil = async (req, res) => {
         res.status(500).json({ msg: error.message });
     }
 };
-
-/* Hola, esto es para probar el commit*/
