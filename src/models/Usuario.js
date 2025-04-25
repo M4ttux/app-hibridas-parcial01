@@ -5,18 +5,33 @@ const usuarioSchema = new mongoose.Schema({
     nombre: {
         type: String,
         required: true,
-        trim: true
+        trim: true,
+        validate: {
+            validator: function (v) {
+                // Permite letras, espacios y algunos caracteres como guiones
+                return v.trim().length > 0 && /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s-]+$/.test(v);
+            },
+            message: props => `"${props.value}" no es un nombre válido`
+        }
     },
     email: {
         type: String,
         required: true,
         unique: true,
         trim: true,
-        lowercase: true
+        lowercase: true,
+        validate: {
+            validator: function (v) {
+                // Validación básica de email
+                return v.trim().length > 0 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+            },
+            message: props => `"${props.value}" no es un correo válido`
+        }
     },
     password: {
         type: String,
-        required: true
+        required: true,
+        minlength: [6, 'La contraseña debe tener al menos 6 caracteres']
     },
     fechaRegistro: {
         type: Date,

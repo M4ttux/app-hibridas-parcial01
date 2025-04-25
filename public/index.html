@@ -1,76 +1,103 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>API de Videojuegos</title>
-  <link rel="stylesheet" href="/css/styles.css" />
-  <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-    integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7"
-    crossorigin="anonymous"
-  />
-</head>
-<body class="bg-dark text-light">
-  <div class="container py-5">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>API de Videojuegos</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body class="bg-dark text-light">
     <header class="text-center mb-5">
       <h1 class="display-4 fw-bold">API de Videojuegos</h1>
-      <p class="lead">Una API RESTful para gestionar videojuegos y desarrolladoras</p>
+      <p class="lead">
+        Una API RESTful para gestionar videojuegos y desarrolladoras
+      </p>
     </header>
-
     <main>
-      <section class="mb-5">
-        <h2 class="border-bottom pb-2">Información de la API</h2>
-        <p>
-          Esta API permite gestionar videojuegos y desarrolladoras. Puedes crear,
-          leer, actualizar y eliminar videojuegos y desarrolladoras.
-        </p>
-      </section>
+      <div class="container">
+        <section class="mb-5">
+          <h2 class="border-bottom pb-2">Información de la API</h2>
+          <p>
+            Esta API permite gestionar videojuegos y desarrolladoras. Puedes
+            crear, leer, actualizar y eliminar videojuegos y desarrolladoras.
+          </p>
+          <h2 class="pb-2 text-danger fw-bold">Advertencia</h2>
+          <p>
+            Para añadir nuevas
+            <span class="fw-bold text-info">desarrolladoras</span> y
+            <span class="fw-bold text-info">videojuegos</span>, es necesario
+            <span class="fw-bold text-info">autenticarse</span> con un token
+            JWT.
+          </p>
+        </section>
 
-      <section>
-        <h2 class="border-bottom pb-2 mb-4">Endpoints Disponibles</h2>
-
-        <div class="mb-5">
-          <h3 class="text-info">Usuarios</h3>
-          <ul class="list-unstyled">
-            <li class="mb-4">
-              <strong><span class="text-post">POST</span> /api/usuarios/login</strong> - Iniciar sesión
-              <pre><code>POST /api/usuarios/login
+        <section>
+          <h2 class="border-bottom pb-2 mb-4">Endpoints Disponibles</h2>
+          <div class="mb-5">
+            <h3 class="text-info">Usuarios</h3>
+            <ul class="list-unstyled">
+              <li class="mb-4">
+                <strong
+                  ><span class="text-post">POST</span>
+                  /api/usuarios/login</strong
+                >
+                - Iniciar sesión
+                <pre><code>POST /api/usuarios/login
 
 {
   "email": "usuario@ejemplo.com",
   "password": "contraseña123"
 }</code></pre>
-            </li>
-            <li class="mb-4">
-              <strong><span class="text-post">POST</span> /api/usuarios/registro</strong> - Registrar un nuevo usuario
-              <pre><code>POST /api/usuarios/registro
+              </li>
+              <li class="mb-4">
+                <strong
+                  ><span class="text-post">POST</span>
+                  /api/usuarios/registro</strong
+                >
+                - Registrar un nuevo usuario
+                <pre><code>POST /api/usuarios/registro
 
 {
   "nombre": "Usuario Ejemplo",
   "email": "usuario@ejemplo.com",
   "password": "contraseña123"
 }</code></pre>
-            </li>
-            <li class="mb-4">
-              <strong><span class="text-get">GET</span> /api/usuarios/perfil</strong> - Obtener perfil de usuario (requiere autenticación)
-              <pre><code>GET /api/usuarios/perfil
+              </li>
+              <li class="mb-4">
+                <strong
+                  ><span class="text-get">GET</span>
+                  /api/usuarios/perfil</strong
+                >
+                - Obtener perfil de usuario (requiere autenticación)
+                <pre><code>GET /api/usuarios/perfil
 Autorización: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...</code></pre>
-            </li>
-            <li class="mb-4">
-              <strong><span class="text-get">GET</span> /api/usuarios/</strong> - Obtener todos los usuarios
-              <pre><code>GET /api/usuarios/</code></pre>
-            </li>
-          </ul>
-        </div>
+              </li>
+              <li class="mb-4">
+                <strong
+                  ><span class="text-get">GET</span> /api/usuarios/</strong
+                >
+                - Obtener todos los usuarios
+                <pre><code>GET /api/usuarios/</code></pre>
+              </li>
+            </ul>
+          </div>
 
-        <div class="mb-5">
-          <h3 class="text-info">Desarrolladoras</h3>
-          <ul class="list-unstyled">
-            <li class="mb-4">
-              <strong><span class="text-post">POST</span> /api/desarrolladoras</strong> - Crear una nueva desarrolladora (requiere autenticación)
-              <pre><code>POST /api/desarrolladoras
+          <div class="mb-5">
+            <h3 class="text-info">Desarrolladoras</h3>
+            <ul class="list-unstyled">
+              <li class="mb-4">
+                <strong
+                  ><span class="text-post">POST</span>
+                  /api/desarrolladoras</strong
+                >
+                - Crear una nueva desarrolladora (requiere autenticación)
+                <pre><code>POST /api/desarrolladoras
 Autorización: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 
 {
@@ -78,10 +105,14 @@ Autorización: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
   "pais": "Japón",
   "fundacion": 1889
 }</code></pre>
-            </li>
-            <li class="mb-4">
-              <strong><span class="text-warning">PUT</span> /api/desarrolladoras/:id</strong> - Actualizar una desarrolladora (requiere autenticación)
-              <pre><code>PUT /api/desarrolladoras/60a1b2c3d4e5f6g7h8i9j0k
+              </li>
+              <li class="mb-4">
+                <strong
+                  ><span class="text-warning">PUT</span>
+                  /api/desarrolladoras/:id</strong
+                >
+                - Actualizar una desarrolladora (requiere autenticación)
+                <pre><code>PUT /api/desarrolladoras/60a1b2c3d4e5f6g7h8i9j0k
 Autorización: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 
 {
@@ -89,52 +120,79 @@ Autorización: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
   "pais": "Japón",
   "fundacion": 1889
 }</code></pre>
-            </li>
-            <li class="mb-4">
-              <strong><span class="text-danger">DELETE</span> /api/desarrolladoras/:id</strong> - Eliminar una desarrolladora (requiere autenticación)
-              <pre><code>DELETE /api/desarrolladoras/60a1b2c3d4e5f6g7h8i9j0k
+              </li>
+              <li class="mb-4">
+                <strong
+                  ><span class="text-danger">DELETE</span>
+                  /api/desarrolladoras/:id</strong
+                >
+                - Eliminar una desarrolladora (requiere autenticación)
+                <pre><code>DELETE /api/desarrolladoras/60a1b2c3d4e5f6g7h8i9j0k
 Autorización: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...</code></pre>
-            </li>
-            <li class="mb-4">
-              <strong><span class="text-get">GET</span> /api/desarrolladoras</strong> - Obtener todas las desarrolladoras
-              <pre><code>GET /api/desarrolladoras</code></pre>
-            </li>
-            <li class="mb-4">
-              <strong><span class="text-get">GET</span> /api/desarrolladoras/:id</strong> - Obtener una desarrolladora por ID
-              <pre><code>GET /api/desarrolladoras/60a1b2c3d4e5f6g7h8i9j0k</code></pre>
-            </li>
-            <li class="mb-4">
-              <strong><span class="text-get">GET</span> /api/desarrolladoras?nombre=:nombre</strong> - Obtener una desarrolladora por nombre
-              <pre><code>GET /api/desarrolladoras?nombre=Nintendo</code></pre>
-            </li>
-            <li class="mb-4">
-              <strong><span class="text-get">GET</span> /api/desarrolladoras?pais=:pais</strong> - Obtener desarrolladoras por pais
-              <pre><code>GET /api/desarrolladoras?pais=Japón</code></pre>
-            </li>
-          </ul>
-        </div>
+              </li>
+              <li class="mb-4">
+                <strong
+                  ><span class="text-get">GET</span>
+                  /api/desarrolladoras</strong
+                >
+                - Obtener todas las desarrolladoras
+                <pre><code>GET /api/desarrolladoras</code></pre>
+              </li>
+              <li class="mb-4">
+                <strong
+                  ><span class="text-get">GET</span>
+                  /api/desarrolladoras/:id</strong
+                >
+                - Obtener una desarrolladora por ID
+                <pre><code>GET /api/desarrolladoras/60a1b2c3d4e5f6g7h8i9j0k</code></pre>
+              </li>
+              <li class="mb-4">
+                <strong
+                  ><span class="text-get">GET</span>
+                  /api/desarrolladoras?nombre=:nombre</strong
+                >
+                - Obtener una desarrolladora por nombre
+                <pre><code>GET /api/desarrolladoras?nombre=Nintendo</code></pre>
+              </li>
+              <li class="mb-4">
+                <strong
+                  ><span class="text-get">GET</span>
+                  /api/desarrolladoras?pais=:pais</strong
+                >
+                - Obtener desarrolladoras por pais
+                <pre><code>GET /api/desarrolladoras?pais=Japón</code></pre>
+              </li>
+            </ul>
+          </div>
 
-        <div class="mb-5">
-          <h3 class="text-info">Videojuegos</h3>
-          <ul class="list-unstyled">
-            <li class="mb-4">
-              <strong><span class="text-post">POST</span> /api/videojuegos</strong> - Crear un nuevo videojuego (requiere autenticación)
-              <pre><code>POST /api/videojuegos
+          <div class="mb-5">
+            <h3 class="text-info">Videojuegos</h3>
+            <ul class="list-unstyled">
+              <li class="mb-4">
+                <strong
+                  ><span class="text-post">POST</span> /api/videojuegos</strong
+                >
+                - Crear un nuevo videojuego (requiere autenticación)
+                <pre><code>POST /api/videojuegos
 Autorización: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 
 {
   "titulo": "The Legend of Zelda: Breath of the Wild",
   "descripcion": "Un juego de aventuras de mundo abierto",
-  "genero": "Aventura",
-  "plataformas": ["Nintendo Switch", "Wii U"],
-  "fechaLanzamiento": "2017-03-03",
-  "desarrolladora": "60a1b2c3d4e5f6g7h8i9j0k",
+  "genero": ["Acción", "Aventura", "Carreras", "Deportes", "Estrategia", "Juegos de rol", "Simulación", "Terror", "Otros"], <span class="text-warning">// Opciones disponibles</span>
+  "plataformas": ["PC", "PS5" , "PS4", "PS3", "Xbox Series X", "Xbox Series S", "Xbox One", "Xbox 360", "Nintendo Switch", "Mobile", "Otros"], <span class="text-warning">// Opciones disponibles</span>
+  "fechaLanzamiento": "2017",
+  "desarrolladora": "60a1b2c3d4e5f6g7h8i9j0k", <span class="text-warning">// Id de desarrolladora</span>
   "precio": 59.99
 }</code></pre>
-            </li>
-            <li class="mb-4">
-              <strong><span class="text-warning">PUT</span> /api/videojuegos/:id</strong> - Actualizar un videojuego (requiere autenticación)
-              <pre><code>PUT /api/videojuegos/60a1b2c3d4e5f6g7h8i9j0k
+              </li>
+              <li class="mb-4">
+                <strong
+                  ><span class="text-warning">PUT</span>
+                  /api/videojuegos/:id</strong
+                >
+                - Actualizar un videojuego (requiere autenticación)
+                <pre><code>PUT /api/videojuegos/60a1b2c3d4e5f6g7h8i9j0k
 Autorización: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 
 {
@@ -142,51 +200,72 @@ Autorización: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
   "descripcion": "Un juego de aventuras de mundo abierto actualizado",
   "precio": 49.99
 }</code></pre>
-            </li>
-            <li class="mb-4">
-              <strong><span class="text-danger">DELETE</span> /api/videojuegos/:id</strong> - Eliminar un videojuego (requiere autenticación)
-              <pre><code>DELETE /api/videojuegos/60a1b2c3d4e5f6g7h8i9j0k
+              </li>
+              <li class="mb-4">
+                <strong
+                  ><span class="text-danger">DELETE</span>
+                  /api/videojuegos/:id</strong
+                >
+                - Eliminar un videojuego (requiere autenticación)
+                <pre><code>DELETE /api/videojuegos/60a1b2c3d4e5f6g7h8i9j0k
 Autorización: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...</code></pre>
-            </li>
-            <li class="mb-4">
-              <strong><span class="text-get">GET</span> /api/videojuegos</strong> - Obtener todos los videojuegos
-              <pre><code>GET /api/videojuegos</code></pre>
-            </li>
-            <li class="mb-4">
-              <strong><span class="text-get">GET</span> /api/videojuegos/:id</strong> - Obtener un videojuego por ID
-              <pre><code>GET /api/videojuegos/60a1b2c3d4e5f6g7h8i9j0k</code></pre>
-            </li>
-            <li class="mb-4">
-              <strong><span class="text-get">GET</span> /api/videojuegos?titulo=:titulo</strong> - Obtener un videojuego por titulo
-              <pre><code>GET /api/videojuegos?titulo=Sonic Generations</code></pre>
-            </li>
-            <li class="mb-4">
-              <strong><span class="text-get">GET</span> /api/videojuegos?genero=:genero</strong> - Obtener un videojuego por genero
-              <pre><code>GET /api/videojuegos?titulo=Terror</code></pre>
-            </li>
-            <li class="mb-4">
-              <strong><span class="text-get">GET</span> /api/videojuegos?plataforma=:plataforma</strong> - Obtener un videojuego por plataforma
-              <pre><code>GET /api/videojuegos?plataforma=PC</code></pre>
-            </li>
-          </ul>
-        </div>
-
-      </section>
+              </li>
+              <li class="mb-4">
+                <strong
+                  ><span class="text-get">GET</span> /api/videojuegos</strong
+                >
+                - Obtener todos los videojuegos
+                <pre><code>GET /api/videojuegos</code></pre>
+              </li>
+              <li class="mb-4">
+                <strong
+                  ><span class="text-get">GET</span>
+                  /api/videojuegos/:id</strong
+                >
+                - Obtener un videojuego por ID
+                <pre><code>GET /api/videojuegos/60a1b2c3d4e5f6g7h8i9j0k</code></pre>
+              </li>
+              <li class="mb-4">
+                <strong
+                  ><span class="text-get">GET</span>
+                  /api/videojuegos?titulo=:titulo</strong
+                >
+                - Obtener un videojuego por titulo
+                <pre><code>GET /api/videojuegos?titulo=Sonic Generations</code></pre>
+              </li>
+              <li class="mb-4">
+                <strong
+                  ><span class="text-get">GET</span>
+                  /api/videojuegos?genero=:genero</strong
+                >
+                - Obtener un videojuego por genero
+                <pre><code>GET /api/videojuegos?titulo=Terror</code></pre>
+              </li>
+              <li class="mb-4">
+                <strong
+                  ><span class="text-get">GET</span>
+                  /api/videojuegos?plataforma=:plataforma</strong
+                >
+                - Obtener un videojuego por plataforma
+                <pre><code>GET /api/videojuegos?plataforma=PC</code></pre>
+              </li>
+            </ul>
+          </div>
+        </section>
+      </div>
     </main>
 
-    <footer class="text-center bg-secondary text-white mt-5 p-4 rounded shadow">
+    <footer class="text-center text-white mt-5 p-4 rounded shadow">
       <p><strong>Nombre y Apellido:</strong> Matias Neto</p>
       <p><strong>Nombre de la materia:</strong> Aplicaciones Híbridas</p>
       <p><strong>Nombre del docente:</strong> Jonathan Emanuel Cruz</p>
       <p><strong>Comisión:</strong> DWT4AV</p>
     </footer>
-  </div>
 
-  <script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
-    crossorigin="anonymous"
-  ></script>
-
-</body>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>

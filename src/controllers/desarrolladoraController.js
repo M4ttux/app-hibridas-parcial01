@@ -56,7 +56,6 @@ export const createDesarrolladora = async (req, res) => {
         });
 
         await desarrolladora.save();
-
         res.status(201).json({msg: 'Desarrolladora creada', desarrolladora});
     } catch (error) {
         console.error('Error al crear la desarrolladora:', error);
