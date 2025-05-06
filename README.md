@@ -28,7 +28,7 @@ Una API RESTful para gestionar videojuegos y desarrolladoras, con autenticación
 
 1. Clonar el repositorio:
    ```
-   git clone https://github.com/tu-usuario/videojuegos-api.git
+   git clone https://github.com/M4ttux/app-hibridas-parcial01.git
    cd videojuegos-api
    ```
 
@@ -49,6 +49,16 @@ Una API RESTful para gestionar videojuegos y desarrolladoras, con autenticación
    ```
    npm run dev
    ```
+
+## Como usar la API
+
+### Primero debe registrar un usuario y luego iniciar sesión
+
+### Para usar la API debe usar el token de autenticación obtenido al iniciar sesión
+
+### Hecho esto, podrá utilizar los endpoints de Desarrolladoras
+
+### Una vez creada una desarrolladora, puede usar los endpoints de Videojuegos, pero debe usar el id de la desarrolladora a la hora de crear un videojuego
 
 ## Endpoints de la API
 
